@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from forms import LoginForm
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'a-super-secret-key-that-no-one-knows'
 
 @app.route('/')
 def index():
@@ -15,7 +16,7 @@ def info():
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     form = LoginForm()
-    return render_template('login.html', form_fields = form)
+    return render_template('login.html', form = form)
 
 
 if __name__ == "__main__":
